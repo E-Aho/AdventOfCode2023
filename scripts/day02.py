@@ -16,7 +16,6 @@ def parse_games(inputs):
     return game_dicts
 
 
-
 def part1(inputs):
 
     game_dicts = parse_games(inputs)
