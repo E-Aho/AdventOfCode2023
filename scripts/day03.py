@@ -35,6 +35,7 @@ def parse_matrix(matrix):
                     char_map[(x, y)] = cur
     return number_ranges, char_map
 
+
 def get_adjacent_ranges(start, end):
     # do top&bottom + ends seperately to avoid numbers in number
     min_x, y = start
@@ -47,6 +48,7 @@ def get_adjacent_ranges(start, end):
     ]).union({(min_x - 1, y), (max_x + 1, y)})
 
     return outer
+
 
 def main(inputs):
 
@@ -71,7 +73,6 @@ def main(inputs):
             part_symbols.append(number)
 
     true_gears = [np.prod(v) for v in gear_map.values() if len(v) == 2]
-
 
     print(f"part 1: {sum(part_symbols)}")
     print(f"part 2: {sum(true_gears)}")
