@@ -1,14 +1,16 @@
+from typing import Tuple
+
 import numpy as np
 
 DAY_NUM = "03"
 
 
-def get_matrix(inputs):
-    m = [list(s) for s in inputs]
-    return m
+def parse_matrix(matrix) -> Tuple[dict, dict]:
+    """
+    Scans matrix once, returns indexes of starts + stops of numbers,
+     as well as the locations of objects.
+    """
 
-
-def parse_matrix(matrix):
     number_ranges = dict()
     char_map = {}
     x_max = len(matrix[0])-1
@@ -37,7 +39,9 @@ def parse_matrix(matrix):
 
 
 def get_adjacent_ranges(start, end):
-    # do top&bottom + ends seperately to avoid numbers in number
+    """Gets all indexes adjacent to sequence.
+    NB: Returns values that might be outside range of array.
+    Not an issue, as we just don't track those indexes in future steps."""
     min_x, y = start
     max_x = end[0]
 
@@ -51,31 +55,30 @@ def get_adjacent_ranges(start, end):
 
 
 def main(inputs):
-
-    m = get_matrix(inputs)
-
-    number_coordinates,  objects = parse_matrix(m)
+    m = [list(s) for s in inputs]
+    number_coords,  symbols = parse_matrix(m)
 
     part_symbols = []
-    gear_map = {coord: [] for coord, object in objects.items() if object == "*"}
+    gear_map = {coord: [] for coord, symbol in symbols.items() if symbol == "*"}
 
-    for (start, end), number in number_coordinates.items():
+    for (start, end), number in number_coords.items():
 
         found_objects = set()
         adjacent_range = get_adjacent_ranges(start, end)
 
         for idx in adjacent_range:
-            if idx in objects:
-                found_objects.add(objects[idx])
-                if objects[idx] == "*":
+            if idx in symbols:
+                found_objects.add(symbols[idx])
+                if symbols[idx] == "*":
                     gear_map[idx].append(number)
+
         if found_objects:
             part_symbols.append(number)
 
-    true_gears = [np.prod(v) for v in gear_map.values() if len(v) == 2]
+    gear_ratios = [np.prod(v) for v in gear_map.values() if len(v) == 2]
 
     print(f"part 1: {sum(part_symbols)}")
-    print(f"part 2: {sum(true_gears)}")
+    print(f"part 2: {sum(gear_ratios)}")
 
 
 if __name__ == "__main__":
