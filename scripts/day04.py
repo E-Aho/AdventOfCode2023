@@ -37,11 +37,6 @@ def main(inputs):
     print(f"Part 2: {sum(card_counts.values())}")
 
 
-
-
-
-
-
 if __name__ == "__main__":
     with open(f"inputs/{DAY_NUM}/input.txt", "r") as file:
         inputs = [x.strip() for x in file.readlines()]
