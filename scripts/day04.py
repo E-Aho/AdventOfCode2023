@@ -1,5 +1,4 @@
 DAY_NUM = "04"
-from collections import deque
 
 def parse_input(inputs):
     split = [x.split(":")[1] for x in inputs]
