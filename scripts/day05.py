@@ -30,10 +30,12 @@ def get_new_ranges(input_ranges: List[tuple], layer_ranges):
         running_ranges = []
         for start, end in input_ranges:
 
+            # make before, inner, and after ranges from intersecting both ranges
             before = start, min(end, source)
             inner = max(start, source), min(source + length, end)
             after = max(source + length, start), end
 
+            # add to running range or map to output if valid range
             if before[1] > before[0]:
                 running_ranges.append(before)
             if inner[1] > inner[0]:
