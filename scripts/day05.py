@@ -23,6 +23,7 @@ def get_out_from_almanac(number, ranges):
 
 
 def get_new_ranges(input_ranges: List[tuple], layer_ranges):
+    """Splits ranges into new ranges as mapped by each layer in almanac"""
     output_ranges = []
 
     for destination, source, length in layer_ranges:
@@ -42,6 +43,8 @@ def get_new_ranges(input_ranges: List[tuple], layer_ranges):
 
         # make new possibly cut ranges the ranges checked for next layer
         input_ranges = running_ranges
+
+    # at end, any running ranges left over are not inside any range
     return output_ranges + input_ranges
 
 
