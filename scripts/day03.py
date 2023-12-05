@@ -13,7 +13,7 @@ def parse_matrix(matrix) -> Tuple[dict, dict]:
 
     number_ranges = dict()
     char_map = {}
-    x_max = len(matrix[0])-1
+    x_max = len(matrix[0]) - 1
     for y in range(len(matrix)):
         num_start = None
         for x in range(len(matrix[0])):
@@ -29,7 +29,7 @@ def parse_matrix(matrix) -> Tuple[dict, dict]:
                     number_ranges[index_range] = number
             else:
                 if num_start:
-                    number_ranges[(num_start, (x-1, y))] = int("".join(
+                    number_ranges[(num_start, (x - 1, y))] = int("".join(
                         matrix[y][num_start[0]:x]
                     ))
                     num_start = None
@@ -46,8 +46,8 @@ def get_adjacent_ranges(start, end):
     max_x = end[0]
 
     outer = set([
-        (x, y+j)
-        for x in range(min_x-1, max_x+2)
+        (x, y + j)
+        for x in range(min_x - 1, max_x + 2)
         for j in (1, -1)
     ]).union({(min_x - 1, y), (max_x + 1, y)})
 
@@ -56,7 +56,7 @@ def get_adjacent_ranges(start, end):
 
 def main(inputs):
     m = [list(s) for s in inputs]
-    number_coords,  symbols = parse_matrix(m)
+    number_coords, symbols = parse_matrix(m)
 
     part_symbols = []
     gear_map = {coord: [] for coord, symbol in symbols.items() if symbol == "*"}
