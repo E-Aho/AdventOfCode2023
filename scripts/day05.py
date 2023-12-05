@@ -14,7 +14,7 @@ def parse_inputs(inputs):
     return seeds, output_dict
 
 
-def get_out_from_almanac(number, ranges):
+def map_single_seed(number, ranges):
     for dest, source, length in ranges:
         x = number - source
         if 0 <= x < length:
@@ -56,17 +56,18 @@ def main(inputs):
     for seed in seeds:
         running = seed
         for v in almanac.values():
-            running = get_out_from_almanac(running, v)
+            running = map_single_seed(running, v)
         locations.append(running)
+    print(f"Part 1: {min(locations)}")
 
     # p2
-    ranges = [(seeds[i], seeds[i] + seeds[i + 1] - 1)
-              for i in range(0, len(seeds), 2)]
+    ranges = [
+        (seeds[i], seeds[i] + seeds[i + 1] - 1) for i in range(0, len(seeds), 2)
+    ]
 
     for layer in almanac.values():
         ranges = get_new_ranges(ranges, layer)
 
-    print(f"Part 1: {min(locations)}")
     print(f"Part 2: {min(r[0] for r in list(ranges))}")
 
 
