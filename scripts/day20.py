@@ -5,5 +5,5 @@ def main(inputs):
 
 if __name__ == "__main__":
     with open(f"inputs/{DAY_NUM}/input.txt", "r") as file:
-        inputs = file.read().split()
+        inputs = [x.rstrip() for x in file.readlines()]
     main(inputs)
