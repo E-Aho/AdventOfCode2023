@@ -40,7 +40,6 @@ def main(inputs):
         total_dist = 0
         for i, j in combinations(expanded_galaxies, 2):
             total_dist += manhattan_dist(i, j)
-
         print(f"{part}: {total_dist}")
 
 
