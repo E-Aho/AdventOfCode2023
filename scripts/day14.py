@@ -5,8 +5,7 @@ DAY_NUM = "14"
 
 def get_load(array):
     round_rocks = np.argwhere(np.isin(array, "O"))
-    return sum([len(array[0])-x[0] for x in round_rocks])
-
+    return sum([len(array[0]) - x[0] for x in round_rocks])
 
 
 def tilt_rocks(array, direction="N") -> np.array:
@@ -29,8 +28,9 @@ def tilt_rocks(array, direction="N") -> np.array:
         array[:, column] = list(out)
 
     # rotate back
-    out = np.rot90(array, k=-1*rot_map[direction])
+    out = np.rot90(array, k=-1 * rot_map[direction])
     return out
+
 
 def find_array_after_cycles(initial_array, count_cycles: int = 1000000000):
     running_arr = initial_array
@@ -57,8 +57,8 @@ def main(array):
     load = get_load(tilted)
     print(f"P1: {load}")
 
-    # p2
     print(f"P2: {get_load(find_array_after_cycles(array))}")
+
 
 if __name__ == "__main__":
     with open(f"inputs/{DAY_NUM}/input.txt", "r") as file:
