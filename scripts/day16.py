@@ -9,12 +9,12 @@ DAY_NUM = "16"
 def is_valid(grid, pos):
     return 0 <= pos[0] < grid.shape[1] and 0 <= pos[1] < grid.shape[0]
 
+
 def calculate_laser(grid: np.array, pos: tuple, vec: tuple) -> List[tuple[tuple,
 tuple]]:
     new_p = tuple(np.add(pos, vec))
     if not is_valid(grid, new_p):
         return []
-    # print(pos, vec)
     c = grid[new_p[1], new_p[0]]
     match c:
         case ".":
@@ -33,6 +33,7 @@ tuple]]:
             return [(new_p, (0, 1)), (new_p, (0, -1))]
     print("Oops")
 
+
 def energize(input_grid, starts):
     visited = defaultdict(set)
 
@@ -45,9 +46,10 @@ def energize(input_grid, starts):
                 current_lasers.append((new_p, new_v))
     return len(visited.keys())
 
+
 def main(input_grid):
     print(array)
-    print(f"Part 1:{energize(input_grid, [((-1,0), (1, 0))])}")
+    print(f"Part 1:{energize(input_grid, [((-1, 0), (1, 0))])}")
     resultant_energies = []
     for y in range(0, input_grid.shape[1]):
         resultant_energies.append(
