@@ -34,8 +34,12 @@ def find_best_route(array, max_straight, min_straight: int = None):
 
             new_x, new_y = state.x + dx, state.y + dy
 
-            if new_x < 0 or new_x >= array.shape[0] or new_y < 0 or new_y >= \
-                    array.shape[1]:
+            if (
+                    new_x < 0 or
+                    new_x >= array.shape[0] or
+                    new_y < 0 or
+                    new_y >= array.shape[1]
+            ):
                 continue
 
             if (dx, dy) == state.v:
