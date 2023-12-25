@@ -50,8 +50,6 @@ def find_best_route(array, max_straight, min_straight: int = None):
                 if new_heatloss < heatloss_map.get(new_state, math.inf):
                     heatloss_map[new_state] = new_heatloss
                     heapq.heappush(queue, (new_heatloss, new_state))
-    print("Hi")
-
 
 def main(array):
     print(inputs)
